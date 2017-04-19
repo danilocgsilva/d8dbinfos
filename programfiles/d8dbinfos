@@ -1,0 +1,14 @@
+#!/bin/bash
+
+d8dbinfos_version=1
+
+if [ -z $drupal8_settings_path ]; then
+    echo Please, provides the first argument to be the path for the drupal 8 settings.php.
+    exit
+fi
+
+drupal_database_name=$(grep \'database\' $drupal8_settings_path | grep -v '*' | cut -f4 -d\' | sed 1p)
+drupal_database_user=$(grep \'username\' $drupal8_settings_path | grep -v '*' | cut -f4 -d\' | sed 1p)
+drupal_database_pass=$(grep \'password\' $drupal8_settings_path | grep -v '*' | cut -f4 -d\' | sed 1p)
+drupal_database_host=$(grep \'host\' $drupal8_settings_path | grep -v '*' | cut -f4 -d\' | sed 1p)
+drupal_database_prefix=$(grep \'prefix\' $drupal8_settings_path | grep -v '*' | cut -f4 -d\' | sed 1p)
